@@ -32,9 +32,9 @@ COPY cont-init.d /etc/cont-init.d/
 #WORKDIR /tmp
 RUN apt-get install gzip
 ENV PATH_NAME /tmp/chisel_linux_amd64
-RUN wget -O /tmp/chisel.gz https://github.com/jpillora/chisel/releases/download/1.1.4/chisel_linux_amd64.gz
-RUN gzip -d /tmp/chisel.gz ${PATH_NAME}/chisel
-RUN mv ${PATH_NAME}/chisel /usr/local/bin
+RUN wget -O /tmp/chisel_linux_amd64/chisel.gz https://github.com/jpillora/chisel/releases/download/1.1.4/chisel_linux_amd64.gz
+RUN gzip -d /tmp/chisel_linux_amd64/chisel.gz
+RUN mv ${PATH_NAME}/chisel_linux_amd64 /usr/local/bin/chisel
 
 # clean up
 RUN rm -rf ${PATH_NAME} /var/lib/apt/lists/*
