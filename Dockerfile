@@ -28,4 +28,15 @@ COPY vncmain.sh /app/vncmain.sh
 COPY cq /usr/local/bin/cq
 COPY cont-init.d /etc/cont-init.d/
 
+# install the chisel http tunnel
+WORKDIR /tmp
+ENV PATH_NAME chisel_${VERSION}_linux_${ARCH}
+RUN wget   -O chisel.tgz https://github.com/jpillora/chisel/releases/download/${VERSION}/${PATH_NAME}.tar.gz
+RUN tar -xzvf chisel.tgz ${PATH_NAME}/chisel
+RUN mv ${PATH_NAME}/chisel /usr/local/bin
+
+# clean up
+RUN rm -rf ${PATH_NAME} /var/lib/apt/lists/*
+
+EXPOSE 8080
 VOLUME ["/home/user/coolq"]
