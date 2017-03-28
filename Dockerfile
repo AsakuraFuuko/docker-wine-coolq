@@ -15,7 +15,7 @@ RUN apt-get update && \
     chmod 755 /usr/local/bin/winetricks && \
     apt-get clean
 
-ENV WINEPREFIX=~/.wine32 WINEARCH=win32 winecfg
+RUN env WINEPREFIX=~/.wine32 WINEARCH=win32 winecfg
 
 RUN env WINEPREFIX=~/.wine32 sudo -Hu user /usr/local/bin/winetricks winhttp && \
     env WINEPREFIX=~/.wine32 sudo -Hu user /usr/local/bin/winetricks msscript && \
