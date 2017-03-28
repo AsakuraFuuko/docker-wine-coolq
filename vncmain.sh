@@ -2,7 +2,6 @@
 # Set them to empty is NOT SECURE but avoid them display in random logs.
 
 nohup chisel server --proxy http://localhost &
-nohup echo "root" | sudo /usr/sbin/sshd -D &
 
 export VNC_PASSWD=''
 export USER_PASSWD=''
@@ -18,7 +17,12 @@ while true; do
         # 进程退出后等待 30 秒后再检查，避免 CQ 自重启导致误判
         sleep 30
     else
-        # 存在则说明是别的途径启动的，多等一会儿吧
-        sleep 100
+        process=`ps aux | grep 'sshd'`
+        if [ "$process" == '' ]; then
+            nohup echo "root" | sudo /usr/sbin/sshd -D &
+            sleep 30
+        else
+            sleep 100
+        fi
     fi
 done
