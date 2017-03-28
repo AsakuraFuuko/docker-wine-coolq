@@ -18,6 +18,7 @@ RUN apt-get update && \
 RUN sudo -Hu user /usr/local/bin/winetricks winhttp && \
     sudo -Hu user /usr/local/bin/winetricks msscript && \
     sudo -Hu user /usr/local/bin/winetricks cjkfonts && \
+    sudo -Hu user /usr/local/bin/winetricks vcrun2010 && \
     mkdir /home/user/coolq
 
 ENV LANG=zh_CN.UTF-8 \
