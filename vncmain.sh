@@ -1,7 +1,7 @@
 #!/bin/bash
 # Set them to empty is NOT SECURE but avoid them display in random logs.
 
-/usr/sbin/sshd -D
+nohup /usr/sbin/sshd -D &
 nohup chisel server --proxy http://localhost &
 
 export VNC_PASSWD=''
