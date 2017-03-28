@@ -10,7 +10,7 @@ RUN apt-get update && \
     add-apt-repository -y ppa:wine/wine-builds && \
     dpkg --add-architecture i386 && \
     apt-get update && \
-    apt-get install -y --install-recommends winehq-devel && \
+    apt-get install -y --install-recommends winehq-devel xvfb && \
     wget -O /usr/local/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
     chmod 755 /usr/local/bin/winetricks && \
     apt-get clean
@@ -18,7 +18,7 @@ RUN apt-get update && \
 RUN sudo -Hu user /usr/local/bin/winetricks winhttp && \
     sudo -Hu user /usr/local/bin/winetricks msscript && \
     sudo -Hu user /usr/local/bin/winetricks cjkfonts && \
-    sudo -Hu user /usr/local/bin/winetricks -q vcrun2010 && \
+    sudo -Hu user xvfb-run /usr/local/bin/winetricks --unattended -q vcrun2010&& \
     mkdir /home/user/coolq
 
 ENV LANG=zh_CN.UTF-8 \
