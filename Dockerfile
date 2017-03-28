@@ -10,17 +10,15 @@ RUN apt-get update && \
     add-apt-repository -y ppa:wine/wine-builds && \
     dpkg --add-architecture i386 && \
     apt-get update && \
-    apt-get install -y --install-recommends winehq-devel xvfb && \
+    apt-get install -y --install-recommends winehq-devel && \
     wget -O /usr/local/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
     chmod 755 /usr/local/bin/winetricks && \
     apt-get clean
-    
+
 RUN sudo -Hu user /usr/local/bin/winetricks winhttp && \
     sudo -Hu user /usr/local/bin/winetricks msscript && \
     sudo -Hu user /usr/local/bin/winetricks cjkfonts && \
     mkdir /home/user/coolq
-
-RUN sudo -Hu user xvfb-run /usr/local/bin/winetricks -q vcrun2005 vcrun2008 vcrun2010 vcrun2012 vcrun2013
 
 ENV LANG=zh_CN.UTF-8 \
     LC_ALL=zh_CN.UTF-8 \
@@ -49,7 +47,7 @@ RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
 # clean up
-RUN rm -rf ${PATH_NAME} /var/lib/apt/lists/*
+#RUN rm -rf ${PATH_NAME} /var/lib/apt/lists/*
 
 EXPOSE 8080
 VOLUME ["/home/user/coolq"]
