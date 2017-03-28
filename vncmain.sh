@@ -14,7 +14,7 @@ while true; do
     process=`ps aux | grep 'CQ.\.exe'`
     if [ "$process" == '' ]; then
         # 不存在则重启
-        env WINEPREFIX=~/.wine32 wine ~/coolq/CQ?.exe /account $COOLQ_ACCOUNT
+        wine ~/coolq/CQ?.exe /account $COOLQ_ACCOUNT
         # 进程退出后等待 30 秒后再检查，避免 CQ 自重启导致误判
         sleep 30
     else
