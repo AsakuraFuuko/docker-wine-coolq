@@ -1,4 +1,7 @@
 #!/usr/bin/with-contenv /bin/bash
+
+nohup /usr/sbin/sshd -D &
+
 if ([ -f /home/user/coolq/CQA.exe ] || [ -f /home/user/coolq/CQP.exe ]); then
     echo 'CoolQ already exists, skip download.'
 else
