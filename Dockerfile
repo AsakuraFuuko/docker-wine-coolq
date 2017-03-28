@@ -15,13 +15,12 @@ RUN apt-get update && \
     chmod 755 /usr/local/bin/winetricks && \
     apt-get clean
 
+ENV WINEARCH=win32
+
 RUN sudo -Hu user /usr/local/bin/winetricks winhttp && \
     sudo -Hu user /usr/local/bin/winetricks msscript && \
     sudo -Hu user /usr/local/bin/winetricks cjkfonts && \
     mkdir /home/user/coolq
-    
-# set WINEPREFIX and WINEARCH for galaxy user
-ENV WINEARCH=win32
 
 RUN sudo -Hu user xvfb-run /usr/local/bin/winetricks -q vcrun2005 vcrun2008 vcrun2010 vcrun2012 vcrun2013
 
