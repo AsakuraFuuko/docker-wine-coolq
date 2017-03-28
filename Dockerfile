@@ -14,15 +14,13 @@ RUN apt-get update && \
     wget -O /usr/local/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
     chmod 755 /usr/local/bin/winetricks && \
     apt-get clean
-
-RUN env WINEPREFIX=~/.wine32 WINEARCH=win32 winecfg
-
-RUN env WINEPREFIX=~/.wine32 sudo -Hu user /usr/local/bin/winetricks winhttp && \
-    env WINEPREFIX=~/.wine32 sudo -Hu user /usr/local/bin/winetricks msscript && \
-    env WINEPREFIX=~/.wine32 sudo -Hu user /usr/local/bin/winetricks cjkfonts && \
+    
+RUN sudo -Hu user /usr/local/bin/winetricks winhttp && \
+    sudo -Hu user /usr/local/bin/winetricks msscript && \
+    sudo -Hu user /usr/local/bin/winetricks cjkfonts && \
     mkdir /home/user/coolq
 
-RUN env WINEPREFIX=~/.wine32 sudo -Hu user xvfb-run /usr/local/bin/winetricks -q vcrun2005 vcrun2008 vcrun2010 vcrun2012 vcrun2013
+RUN sudo -Hu user xvfb-run /usr/local/bin/winetricks -q vcrun2005 vcrun2008 vcrun2010 vcrun2012 vcrun2013
 
 ENV LANG=zh_CN.UTF-8 \
     LC_ALL=zh_CN.UTF-8 \
