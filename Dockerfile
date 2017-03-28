@@ -1,8 +1,5 @@
 FROM oott123/novnc:latest
 
-ENV CHISEL_VERSION 1.1.4
-ENV CHISEL_ARCH amd64
-
 RUN apt-get update && \
     apt-get install -y \
         software-properties-common \
@@ -34,7 +31,7 @@ COPY cont-init.d /etc/cont-init.d/
 # install the chisel http tunnel
 WORKDIR /tmp
 ENV PATH_NAME chisel_${VERSION}_linux_${ARCH}
-RUN wget   -O chisel.tgz https://github.com/jpillora/chisel/releases/download/${CHISEL_VERSION}/${CHISEL_PATH_NAME}.tar.gz
+RUN wget   -O chisel.tgz https://github.com/jpillora/chisel/releases/download/1.1.4/amd64.tar.gz
 RUN tar -xzvf chisel.tgz ${PATH_NAME}/chisel
 RUN mv ${PATH_NAME}/chisel /usr/local/bin
 
