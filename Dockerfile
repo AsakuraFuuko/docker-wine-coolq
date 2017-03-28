@@ -31,7 +31,7 @@ COPY cont-init.d /etc/cont-init.d/
 # install the chisel http tunnel
 WORKDIR /tmp
 ENV PATH_NAME chisel_linux_amd64
-RUN wget   -O chisel.tgz https://github.com/jpillora/chisel/releases/download/1.1.4/amd64.tar.gz
+RUN wget   -O chisel.tgz https://github.com/jpillora/chisel/releases/download/1.1.4/chisel_linux_amd64.gz
 RUN tar -xzvf chisel.tgz ${PATH_NAME}/chisel
 RUN mv ${PATH_NAME}/chisel /usr/local/bin
 
