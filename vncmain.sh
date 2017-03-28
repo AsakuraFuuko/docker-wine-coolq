@@ -17,12 +17,6 @@ while true; do
         # 进程退出后等待 30 秒后再检查，避免 CQ 自重启导致误判
         sleep 30
     else
-        process=`ps aux | grep 'sshd'`
-        if [ "$process" == '' ]; then
-            nohup echo "root" | sudo /usr/sbin/sshd -D &
-            sleep 30
-        else
-            sleep 100
-        fi
+        sleep 100
     fi
 done
