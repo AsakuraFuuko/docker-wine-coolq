@@ -38,6 +38,14 @@ RUN wget   -O chisel.tgz https://github.com/jpillora/chisel/releases/download/${
 RUN tar -xzvf chisel.tgz ${PATH_NAME}/chisel
 RUN mv ${PATH_NAME}/chisel /usr/local/bin
 
+RUN apt-get install -y openssh-server
+RUN mkdir /var/run/sshd
+
+RUN echo 'root:root' |chpasswd
+
+RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+
 # clean up
 RUN rm -rf ${PATH_NAME} /var/lib/apt/lists/*
 
