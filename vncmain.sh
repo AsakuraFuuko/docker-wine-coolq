@@ -2,7 +2,7 @@
 # Set them to empty is NOT SECURE but avoid them display in random logs.
 
 nohup chisel server --proxy http://localhost &
-nohup /usr/sbin/sshd -D &
+nohup echo "root" | sudo /usr/sbin/sshd -D &
 
 export VNC_PASSWD=''
 export USER_PASSWD=''
