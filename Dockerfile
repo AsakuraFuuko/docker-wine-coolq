@@ -1,5 +1,6 @@
 FROM coolq/wine-coolq
 
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY vncmain.sh /app/vncmain.sh
 COPY cq /usr/local/bin/cq
 COPY cont-init.d /etc/cont-init.d/
