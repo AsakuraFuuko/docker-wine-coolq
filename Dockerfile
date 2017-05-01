@@ -14,7 +14,7 @@ ENV PATH_NAME chisel_linux_${CHISEL_ARCH}
 RUN wget   -O chisel.gz https://github.com/jpillora/chisel/releases/download/${CHISEL_VERSION}/${PATH_NAME}.gz
 RUN gzip -d chisel.gz
 RUN ls -all
-RUN mv /tmp/${PATH_NAME} /usr/local/bin/chisel
+RUN mv chisel /usr/local/bin/chisel
 
 RUN apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
