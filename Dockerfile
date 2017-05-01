@@ -15,6 +15,7 @@ RUN wget   -O chisel.gz https://github.com/jpillora/chisel/releases/download/${C
 RUN gzip -d chisel.gz
 RUN ls -all
 RUN mv chisel /usr/local/bin/chisel
+RUN chmod +x /usr/local/bin/chisel
 
 RUN apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
