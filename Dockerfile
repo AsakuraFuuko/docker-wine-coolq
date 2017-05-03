@@ -32,7 +32,7 @@ ENV WINE_GECKO_VERSION 2.40
 
 RUN add-apt-repository ppa:ubuntu-wine/ppa && \
     apt-get update -y && \
-    apt-get install -y wine-gecko$WINE_GECKO_VERSION:i386 && \
+    apt-get install -y --no-install-recommends wine-gecko$WINE_GECKO_VERSION:i386 && \
 	 wine-gecko$WINE_GECKO_VERSION:amd64
 
 
