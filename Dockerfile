@@ -30,7 +30,7 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
 RUN add-apt-repository ppa:ubuntu-wine/ppa && \
 apt-get update && \
-apt-get install -y wine-gecko2.47
+apt-get install -y wine-gecko2.40
 
 
 EXPOSE 8080
