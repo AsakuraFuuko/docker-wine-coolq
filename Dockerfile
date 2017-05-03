@@ -28,15 +28,10 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 # clean up
 #RUN rm -rf ${PATH_NAME} /var/lib/apt/lists/*
 
-ENV WINE_GECKO_VERSION 2.40
-
-RUN add-apt-repository ppa:ubuntu-wine/ppa && \
-    apt-get update -y && \
-    dpkg --add-architecture i386
-    
-RUN apt-get install -y --no-install-recommends wine-gecko$WINE_GECKO_VERSION:i386 && \
-	 wine-gecko$WINE_GECKO_VERSION:amd64
-
+RUN mkdir -p /usr/share/wine/gecko \
+    && curl -SL http://dl.winehq.org/wine/wine-gecko/2.40/wine_gecko-2.40-x86.msi -o /usr/share/wine/gecko/wine_gecko-2.40-x86.msi \
+    && curl -SL http://dl.winehq.org/wine/wine-gecko/2.40/wine_gecko-2.40-x86_64.msi -o /usr/share/wine/gecko/wine_gecko-2.40-x86_64.msi \
+    && chmod +x /usr/share/wine/gecko/*.msi
 
 EXPOSE 8080
 VOLUME ["/home/user/coolq"]
