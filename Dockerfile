@@ -28,8 +28,7 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 # clean up
 #RUN rm -rf ${PATH_NAME} /var/lib/apt/lists/*
 
-RUN add-apt-repository ppa:ubuntu-wine/ppa && \
-apt-get update && \
+RUN apt-get update && \
 apt-get install -y wine-gecko2.21
 
 
