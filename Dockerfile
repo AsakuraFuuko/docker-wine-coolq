@@ -32,8 +32,9 @@ ENV WINE_GECKO_VERSION 2.21
 
 RUN add-apt-repository ppa:ubuntu-wine/ppa && \
     apt-get update -y && \
-    apt-cache search wine-gecko && \
-    apt-get install -y --no-install-recommends wine-gecko$WINE_GECKO_VERSION:i386 && \
+    apt-cache search wine-gecko
+    
+RUN apt-get install -y --no-install-recommends wine-gecko$WINE_GECKO_VERSION:i386 && \
 	 wine-gecko$WINE_GECKO_VERSION:amd64
 
 
