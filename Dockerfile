@@ -28,7 +28,7 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 # clean up
 #RUN rm -rf ${PATH_NAME} /var/lib/apt/lists/*
 
-ENV WINE_GECKO_VERSION 2.40
+ENV WINE_GECKO_VERSION 2.21
 
 RUN add-apt-repository ppa:ubuntu-wine/ppa && \
     apt-get update -y && \
