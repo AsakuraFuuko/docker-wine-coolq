@@ -28,13 +28,12 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 # clean up
 #RUN rm -rf ${PATH_NAME} /var/lib/apt/lists/*
 
-ARG WINE_GECKO_VERSION=2.40
+ENV WINE_GECKO_VERSION 2.40
 
-RUN mkdir -p /usr/share/wine/gecko && \
-   wget "http://dl.winehq.org/wine/wine-gecko/${WINE_GECKO_VERSION}/wine_gecko-${WINE_GECKO_VERSION}-x86.msi" -O /usr/share/wine/gecko/wine_gecko-${WINE_GECKO_VERSION}-x86.msi && \
-   chmod +x /usr/share/wine/gecko/wine_gecko-${WINE_GECKO_VERSION}-x86.msi && \
-   wget "http://dl.winehq.org/wine/wine-gecko/${WINE_GECKO_VERSION}/wine_gecko-${WINE_GECKO_VERSION}-x86_64.msi" -O /usr/share/wine/gecko/wine_gecko-${WINE_GECKO_VERSION}-x86_64.msi && \
-   chmod +x /usr/share/wine/gecko/wine_gecko-${WINE_GECKO_VERSION}-x86_64.msi
+RUN add-apt-repository ppa:ubuntu-wine/ppa && \
+    apt-get update -y && \
+    apt-get install -y wine-gecko$WINE_GECKO_VERSION:i386 && \
+	 wine-gecko$WINE_GECKO_VERSION:amd64
 
 
 EXPOSE 8080
